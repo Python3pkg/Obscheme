@@ -1,0 +1,8 @@
+**/*.pyc
+/.settings/
+/.project
+/.pydevproject
+/.eggs/
+/venv
+/dist/
+/src/Obscheme.egg-info/
