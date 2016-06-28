@@ -115,6 +115,6 @@ class Schema(object):
             value = getattr(obj, name)
             if field.is_defined(value):
                 field.validate(name, value)
-            invariants.update(field.invariants())
+            invariants.update(field.invariants)
         for invariant in invariants:
             invariant(obj)

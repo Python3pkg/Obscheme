@@ -82,7 +82,7 @@ class SchemaFieldDescriptor(object):
     def _validate_invariants(self, obj, field_value):
         override_kw = dict()
         override_kw[self._name] = field_value
-        for invariant in self._field.invariants():
+        for invariant in self._field.invariants:
             kw = factor_invariant_kw(invariant, obj, **override_kw)
             invariant(**kw)
 

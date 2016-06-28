@@ -37,7 +37,7 @@ class SchemaObjectField(Field):
         return self.cls(*a, **kw)
 
     #----------------------------------------------------------------------
-    def _validate(self, name, value):
+    def validate(self, name, value):
         if value is not None:
             try:
                 self.field.validate(name, value)

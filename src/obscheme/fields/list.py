@@ -35,14 +35,12 @@ class ListField(Field):
         self.field = field
 
     #----------------------------------------------------------------------
-    def __getattr__(self, name):
-        """Passthrough access to field attributes and methods"""
-        if not name.startswith('_'):
-            return getattr(self.field, name)
-        raise AttributeError(name)
+    @property
+    def authoritative_field(self):
+        return self.field
 
     #----------------------------------------------------------------------
-    def _validate(self, name, values):
+    def validate(self, name, values):
         for index, value in enumerate(values):
             try:
                 self.field.validate(name, value)

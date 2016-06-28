@@ -42,6 +42,7 @@ class Field(object):
         self._invariants.append(invariant)
 
     #----------------------------------------------------------------------
+    @property
     def invariants(self):
         return tuple(self._invariants)
 
@@ -50,12 +51,13 @@ class Field(object):
         return not isinstance(value, Undefined)
 
     #----------------------------------------------------------------------
-    def validate(self, name, value):
-        self._validate(name, value)
+    @property
+    def authoritative_field(self):
+        return self
 
     #----------------------------------------------------------------------
     @abstractmethod
-    def _validate(self, name, value):
+    def validate(self, name, value):
         pass
 
     #----------------------------------------------------------------------

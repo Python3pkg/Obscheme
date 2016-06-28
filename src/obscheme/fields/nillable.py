@@ -33,14 +33,12 @@ class NillableField(Field):
         self.field = field
 
     #----------------------------------------------------------------------
-    def __getattr__(self, name):
-        """Passthrough access to field attributes and methods"""
-        if not name.startswith('_'):
-            return getattr(self.field, name)
-        raise AttributeError(name)
+    @property
+    def authoritative_field(self):
+        return self.field
 
     #----------------------------------------------------------------------
-    def _validate(self, name, value):
+    def validate(self, name, value):
         if value is not None:
             try:
                 self.field.validate(name, value)

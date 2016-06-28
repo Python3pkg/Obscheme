@@ -56,7 +56,7 @@ class StringField(Field):
         self.max_length = max_length
 
     #----------------------------------------------------------------------
-    def _validate(self, name, value):
+    def validate(self, name, value):
         self._assert_is_string_type(name, value)
         if self._min_length_given():
             self._assert_string_long_enough(name, value)
