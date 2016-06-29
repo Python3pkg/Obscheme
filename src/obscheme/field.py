@@ -18,11 +18,9 @@ class Undefined(object):
         self.field = field
 
     #----------------------------------------------------------------------
-    def __getattr__(self, name):
-        """Allows access to field attributes and methods"""
-        if not name.startswith('_'):
-            return getattr(self.field, name)
-        raise AttributeError(name)
+    @property
+    def authoritative_field(self):
+        return self.field.authoritative_field
 
     #----------------------------------------------------------------------
     def __repr__(self):
