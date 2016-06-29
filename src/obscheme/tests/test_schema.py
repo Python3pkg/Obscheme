@@ -73,6 +73,24 @@ def test_schema_wrong_type():
 
 
 #----------------------------------------------------------------------
+def test_schema_wrong_type_expected_types():
+    test = TestObject()
+    try:
+        test.name = 123
+    except WrongTypeError as e:
+        assert e.expected_types == [basestring]
+
+
+#----------------------------------------------------------------------
+def test_schema_wrong_type_type():
+    test = TestObject()
+    try:
+        test.name = 123
+    except WrongTypeError as e:
+        assert e.type is int
+
+
+#----------------------------------------------------------------------
 @with_setup(enable_validation(TestObject), enable_validation(TestObject))
 def test_schema_disable_validation():
     test = TestObject()
