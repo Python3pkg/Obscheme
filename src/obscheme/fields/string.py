@@ -59,21 +59,24 @@ class StringField(Field):
     def validate(self, name, value):
         self._assert_is_string_type(name, value)
         if self._min_length_given():
-            self._assert_string_long_enough(name, value)
+            self._assert_string_length_not_below_min(name, value)
         if self._max_length_given():
-            self._assert_string_short_enough(name, value)
+            self._assert_string_length_not_above_max(name, value)
 
     #----------------------------------------------------------------------
     def _assert_is_string_type(self, name, value):
         if not isinstance(value, basestring):
-            raise WrongTypeError(name, type(value), basestring)
+            raise WrongTypeError(
+                name,
+                type(value),
+                [basestring])
 
     #----------------------------------------------------------------------
     def _min_length_given(self):
         return self.min_length is not None
 
     #----------------------------------------------------------------------
-    def _assert_string_long_enough(self, name, value):
+    def _assert_string_length_not_below_min(self, name, value):
         string_length = len(value)
         if string_length < self.min_length:
             raise StringTooShortError(name, string_length, self.min_length)
@@ -83,7 +86,7 @@ class StringField(Field):
         return self.max_length is not None
 
     #----------------------------------------------------------------------
-    def _assert_string_short_enough(self, name, value):
+    def _assert_string_length_not_above_max(self, name, value):
         string_length = len(value)
         if string_length > self.max_length:
             raise StringTooLongError(name, string_length, self.max_length)

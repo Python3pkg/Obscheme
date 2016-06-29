@@ -47,12 +47,14 @@ class FieldInvalidError(ValidationError):
 class WrongTypeError(FieldInvalidError):
 
     #----------------------------------------------------------------------
-    def __init__(self, name, type_, expected_type):
+    def __init__(self, name, type_, expected_types):
         FieldInvalidError.__init__(self, name)
         self.type = type_
-        self.expected_type = expected_type
+        self.expected_types = expected_types
 
     #----------------------------------------------------------------------
     @property
     def message(self):
-        return u'Field expected type {} but got {}'.format(self.expected_type, self.type)
+        return u'Field expects types {}, but got {}'.format(
+            u', '.join(self.expected_type),
+            self.type)
