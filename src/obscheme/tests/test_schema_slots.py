@@ -21,14 +21,12 @@ class SubTestSchema(TestSchema):
 
 
 ########################################################################
-class NoSlotsObject(object):
-    __metaclass__ = SchemaMeta
+class NoSlotsObject(object, metaclass=SchemaMeta):
     __schema__ = TestSchema()
 
 
 ########################################################################
-class SlotsObject(object):
-    __metaclass__ = SchemaMeta
+class SlotsObject(object, metaclass=SchemaMeta):
     __schema__ = TestSchema()
     __define_slots__ = True
 
@@ -40,8 +38,7 @@ class SlotsSubObject(SlotsObject):
 
 
 ########################################################################
-class SubSchemaSlotsObject(SlotsObject):
-    __metaclass__ = SchemaMeta
+class SubSchemaSlotsObject(SlotsObject, metaclass=SchemaMeta):
     __schema__ = SubTestSchema()
     __define_slots__ = True
 

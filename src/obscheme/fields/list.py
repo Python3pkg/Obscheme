@@ -23,7 +23,7 @@ class ListFieldInvalidError(FieldInvalidError):
     #----------------------------------------------------------------------
     @property
     def message(self):
-        return u'{} (list index {})'.format(self.e, self.index)
+        return '{} (list index {})'.format(self.e, self.index)
 
 
 ########################################################################

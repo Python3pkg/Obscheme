@@ -13,6 +13,7 @@ import inspect
 from obscheme.exceptions import InvariantError
 from obscheme.field import Field
 from obscheme.util import InitializationEnforcer
+import collections
 
 
 ########################################################################
@@ -24,7 +25,7 @@ class NoSchemaImplementedError(Exception):
 
     #----------------------------------------------------------------------
     def __str__(self):
-        return u'Class {} does not implement a schema'.format(self.cls_name)
+        return 'Class {} does not implement a schema'.format(self.cls_name)
 
 
 #----------------------------------------------------------------------
@@ -41,10 +42,10 @@ def invariant(func):
     def wrapper(*a, **kw):
         result = func(*a, **kw)
         if result is not None:
-            if isinstance(result, basestring):
+            if isinstance(result, str):
                 message = result
             else:
-                message = func.im_func.func_name
+                message = func.__func__.__name__
             raise InvariantError(message)
         return result
 
@@ -90,7 +91,7 @@ class Schema(object):
     def _register_invariants(self):
         for attr_name in dir(self):
             invariant = getattr(self, attr_name)
-            if not callable(invariant):
+            if not isinstance(invariant, collections.Callable):
                 continue
             if not is_invariant(invariant):
                 continue
@@ -100,7 +101,7 @@ class Schema(object):
 
     #----------------------------------------------------------------------
     def __iter__(self):
-        for name, value in self._fields_index.items():
+        for name, value in list(self._fields_index.items()):
             yield name, value
         raise StopIteration()
 

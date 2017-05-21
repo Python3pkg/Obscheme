@@ -29,7 +29,7 @@ class SchemaValidateSwitch(object):
         self._validate = state
 
     #----------------------------------------------------------------------
-    def __nonzero__(self):
+    def __bool__(self):
         return self._validate
 
     #----------------------------------------------------------------------
@@ -110,7 +110,7 @@ class SchemaMeta(type):
             slots = set()
             for base in bases:
                 slots.update(getattr(base, '__slots__', []))
-            slots.update(attrs.keys())
+            slots.update(list(attrs.keys()))
             slots.update(value_holder_attr_names)
             attrs['__slots__'] = tuple(slots)
         return super(SchemaMeta, cls).__new__(cls, name, bases, attrs)

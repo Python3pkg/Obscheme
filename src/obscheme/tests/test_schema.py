@@ -33,8 +33,7 @@ class SubTestSchema(Schema):
 
 
 ########################################################################
-class SubTestObject(object):
-    __metaclass__ = SchemaMeta
+class SubTestObject(object, metaclass=SchemaMeta):
     __schema__ = SubTestSchema()
 
 
@@ -47,8 +46,7 @@ class TestSchema(Schema):
 
 
 ########################################################################
-class TestObject(object):
-    __metaclass__ = SchemaMeta
+class TestObject(object, metaclass=SchemaMeta):
     __schema__ = TestSchema()
 
 
@@ -78,7 +76,7 @@ def test_schema_wrong_type_expected_types():
     try:
         test.name = 123
     except WrongTypeError as e:
-        assert e.expected_types == [basestring]
+        assert e.expected_types == [str]
 
 
 #----------------------------------------------------------------------

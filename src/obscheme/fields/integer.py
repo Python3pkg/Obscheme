@@ -28,7 +28,7 @@ class IntegerValueBelowMinError(IntegerFieldInvalidError):
     #----------------------------------------------------------------------
     @property
     def message(self):
-        return u'Field value {} is lower than min {}'.format(self.value, self.min_value)
+        return 'Field value {} is lower than min {}'.format(self.value, self.min_value)
 
 
 ########################################################################
@@ -43,7 +43,7 @@ class IntegerValueAboveMaxError(IntegerFieldInvalidError):
     #----------------------------------------------------------------------
     @property
     def message(self):
-        return u'Field value {} is higher than max {}'.format(self.value, self.max_value)
+        return 'Field value {} is higher than max {}'.format(self.value, self.max_value)
 
 
 ########################################################################
@@ -65,11 +65,11 @@ class IntegerField(Field):
 
     #----------------------------------------------------------------------
     def _assert_is_integer_type(self, name, value):
-        if not isinstance(value, (int, long)):
+        if not isinstance(value, int):
             raise WrongTypeError(
                 name,
                 type(value),
-                [int, long])
+                [int, int])
 
     #----------------------------------------------------------------------
     def _min_value_given(self):

@@ -21,12 +21,11 @@ class AccountSchema(Schema):
     def full_name_or_nick_name(self, first_name, last_name, nick_name):
         if (self.first_name.is_defined(first_name) or self.last_name.is_defined(last_name)) \
                 and self.nick_name.is_defined(nick_name):
-            return u'Specify either full name or nick name'
+            return 'Specify either full name or nick name'
 
 
 ########################################################################
-class AccountObject(object):
-    __metaclass__ = SchemaMeta
+class AccountObject(object, metaclass=SchemaMeta):
     __schema__ = AccountSchema()
 
 

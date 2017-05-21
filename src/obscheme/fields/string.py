@@ -28,7 +28,7 @@ class StringTooShortError(StringFieldInvalidError):
     #----------------------------------------------------------------------
     @property
     def message(self):
-        return u'Field length {} is lower than required {}'.format(self.length, self.min_length)
+        return 'Field length {} is lower than required {}'.format(self.length, self.min_length)
 
 
 ########################################################################
@@ -43,7 +43,7 @@ class StringTooLongError(StringFieldInvalidError):
     #----------------------------------------------------------------------
     @property
     def message(self):
-        return u'Field length {} is longer than limit {}'.format(self.length, self.max_length)
+        return 'Field length {} is longer than limit {}'.format(self.length, self.max_length)
 
 
 ########################################################################
@@ -65,11 +65,11 @@ class StringField(Field):
 
     #----------------------------------------------------------------------
     def _assert_is_string_type(self, name, value):
-        if not isinstance(value, basestring):
+        if not isinstance(value, str):
             raise WrongTypeError(
                 name,
                 type(value),
-                [basestring])
+                [str])
 
     #----------------------------------------------------------------------
     def _min_length_given(self):

@@ -21,7 +21,7 @@ class NillableFieldInvalidError(FieldInvalidError):
 
     #----------------------------------------------------------------------
     def __str__(self):
-        return u'{} (may be None)'.format(self.e)
+        return '{} (may be None)'.format(self.e)
 
 
 ########################################################################

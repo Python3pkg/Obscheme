@@ -13,8 +13,7 @@ class AccountSchema(Schema):
 
 
 ########################################################################
-class Account(object):
-    __metaclass__ = SchemaMeta
+class Account(object, metaclass=SchemaMeta):
     __schema__ = AccountSchema()
 
 

@@ -22,7 +22,7 @@ class InvariantError(ValidationError):
 
     #----------------------------------------------------------------------
     def __str__(self):
-        return u'Invariant found: {}'.format(self.message)
+        return 'Invariant found: {}'.format(self.message)
 
 
 ########################################################################
@@ -40,7 +40,7 @@ class FieldInvalidError(ValidationError):
 
     #----------------------------------------------------------------------
     def __str__(self):
-        return u'Field {} invalid: {}'.format('.'.join(self.name_stack), self.message)
+        return 'Field {} invalid: {}'.format('.'.join(self.name_stack), self.message)
 
 
 ########################################################################
@@ -55,6 +55,6 @@ class WrongTypeError(FieldInvalidError):
     #----------------------------------------------------------------------
     @property
     def message(self):
-        return u'Field expects types {}, but got {}'.format(
-            u', '.join(self.expected_type),
+        return 'Field expects types {}, but got {}'.format(
+            ', '.join(self.expected_type),
             self.type)

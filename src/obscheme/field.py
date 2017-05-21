@@ -24,14 +24,11 @@ class Undefined(object):
 
     #----------------------------------------------------------------------
     def __repr__(self):
-        return u'Undefined<{!r}>'.format(self.field.__class__.__name__)
+        return 'Undefined<{!r}>'.format(self.field.__class__.__name__)
 
 
 ########################################################################
-class Field(object):
-    __metaclass__ = ABCMeta
-
-    #----------------------------------------------------------------------
+class Field(object, metaclass=ABCMeta):
     def __init__(self):
         self._invariants = []
 
@@ -60,4 +57,4 @@ class Field(object):
 
     #----------------------------------------------------------------------
     def __repr__(self):
-        return u'{}()'.format(self.__class__.__name__)
+        return '{}()'.format(self.__class__.__name__)
